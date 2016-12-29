@@ -1,5 +1,7 @@
 from random import random, shuffle
 import sys
+import numpy as np
+import matplotlib.pyplot as plt
 
 #Simple class for a prob distribution
 #Essentialy a dictionary
@@ -64,4 +66,26 @@ for i in range(iters):
 
 result = Distrib(utilidade)
 result.normalize()
-print(result)
+#texto
+#print(result)
+
+#grafico de barra
+#cria grafico de barra
+ind = np.arange(4)
+width = 1
+fig, ax = plt.subplots()
+values = tuple()
+labels = tuple()
+for keys, items in result.items():
+    values += (items,)
+    labels += (keys,)
+
+ax.bar(ind, values, width)
+ax.set_xticks(ind + width / 2)
+ax.set_xticklabels(labels)
+plt.show()
+
+
+
+
+

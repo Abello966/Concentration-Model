@@ -1,4 +1,5 @@
 from random import random, shuffle
+import sys
 
 #Simple class for a prob distribution
 #Essentialy a dictionary
@@ -41,12 +42,22 @@ class Distrib(dict):
                 return key
         
 
-    
+#trata args
+if len(sys.argv) < 2:
+    print("Numero insuficiente de argumentos; insira iteracoes e utilidade base")
+    exit();
 
-base_util = 1
+try:
+    iters = int(sys.argv[1])
+    base_util = float(sys.argv[2])
+except:
+    print("Erro ao processar argumentos")
+    exit()
+
+
 utilidade = {'OS1': base_util, 'OS2': base_util, 'OS3': base_util, 'OS4': base_util}       
 
-for i in range(100):
+for i in range(iters):
     probs = Distrib(utilidade)
     utilidade[probs.randomChoice()] += 1
 
